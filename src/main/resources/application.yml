@@ -1,0 +1,25 @@
+
+spring:
+  config:
+    activate:
+      on-profile: default
+
+  devtools:
+    livereload:
+      enabled: true
+
+  thymeleaf:
+    cache: false
+
+---
+spring:
+  config:
+    activate:
+      on-profile: develop
+
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+
