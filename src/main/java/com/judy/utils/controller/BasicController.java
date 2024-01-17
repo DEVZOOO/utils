@@ -15,4 +15,13 @@ public class BasicController {
     public String index() {
         return "index";
     }
+
+    /**
+     * 엑셀 업로드 화면
+     */
+    @GetMapping("/excelUpload")
+    public String excelUpload() {
+        return "excel_upload";
+    }
+
 }
