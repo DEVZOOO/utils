@@ -1,8 +1,9 @@
-
 spring:
-  config:
-    activate:
-      on-profile: default
+  application:
+    name: UTILS
+
+  profiles:
+    active: develop
 
   devtools:
     livereload:
@@ -17,9 +18,28 @@ spring:
     activate:
       on-profile: develop
 
+logging:
+  level:
+    jdbc:
+      sqlonly: debug
+      sqltiming: off
+      audit: off
+      resultset: off
+      connection: off
+      resultsettable: info
+
 ---
 spring:
   config:
     activate:
       on-profile: production
 
+logging:
+  level:
+    jdbc:
+      sqlonly: off
+      sqltiming: off
+      audit: off
+      resultset: off
+      connection: off
+      resultsettable: off
