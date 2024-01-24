@@ -4,6 +4,8 @@ FROM openjdk:8-jdk-alpine
 
 RUN echo "PWD :: $PWD"
 
+WORKDIR /volume1/app
+
 RUN ls
 
 ADD ./build/libs/utils-1.0-SNAPSHOT.jar /app/utils.jar
