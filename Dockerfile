@@ -2,10 +2,7 @@ FROM openjdk:8-jdk-alpine
 
 #WORKDIR /app
 
-# ONBUILD : 빌드시마다 실행, cache 사용안함
-RUN echo "PWD : $PWD"
-
-WORKDIR /docker/jenkins
+WORKDIR /var/jenkins_home
 
 RUN ls -l
 
