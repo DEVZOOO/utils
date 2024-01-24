@@ -4,10 +4,10 @@ FROM openjdk:8-jdk-alpine
 
 RUN echo "PWD :: $PWD"
 
-WORKDIR /volume1/app
+#WORKDIR /volume1/app
 
 RUN ls
 
-ADD ./build/libs/utils-1.0-SNAPSHOT.jar /app/utils.jar
+ADD ./build/libs/utils-1.0-SNAPSHOT.jar /volume1/app/utils.jar
 
-ENTRYPOINT exec java $JAVA_OPTS -jar /app/utils.jar
+ENTRYPOINT exec java $JAVA_OPTS -jar /volume1/app/utils.jar
