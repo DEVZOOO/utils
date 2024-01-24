@@ -1,10 +1,8 @@
 FROM openjdk:8-jdk-alpine
 
-#WORKDIR /app
+WORKDIR /volume1/app
 
-WORKDIR /var/jenkins_home
-
-RUN ls -l
+RUN ls -l .
 
 ADD ./build/libs/utils-1.0-SNAPSHOT.jar /volume1/app/utils.jar
 
