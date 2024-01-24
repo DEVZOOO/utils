@@ -5,7 +5,7 @@ FROM openjdk:8-jdk-alpine
 # ONBUILD : 빌드시마다 실행, cache 사용안함
 RUN echo "PWD is $PWD"
 
-#WORKDIR /volume1/app
+WORKDIR /var/jenkins_home/workspace/'(Pipeline) UtilsApplication'
 
 RUN ls -l
 
