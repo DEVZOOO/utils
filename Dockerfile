@@ -1,11 +1,11 @@
 FROM openjdk:8-jdk-alpine
 
 # test
-CMD ["ls", "-l"]
+ENTRYPOINT ["ls", "-l"]
 
 WORKDIR /app
 # test
-CMD ["ls", "-l"]
+ENTRYPOINT ["ls", "-l"]
 
 ADD ./build/libs/utils-1.0-SNAPSHOT.jar /app/utils.jar
 
