@@ -1,14 +1,15 @@
-package com.judy.common;
+package com.judy.utils.utils;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.web.multipart.MultipartFile;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  * Excel 업로드 관련
@@ -20,12 +21,12 @@ public class ExcelUtils {
      * - 첫번째 시트명 : table명
      * - 첫번째 행 : 컬럼명
      */
-    private Map<String, Object> excelToList(MultipartFile file) throws Exception {
+    public static Map<String, Object> excelToList(MultipartFile file) throws Exception {
         InputStream fis = file.getInputStream();
         Map<String, Object> result = new HashMap<>();
 
         // 어떤 table인지 모르므로 map형식
-        List<Map<String, String>> list = new ArrayList<>();
+        List<Map<String, Object>> list = new ArrayList<>();
 
         Workbook workbook = new XSSFWorkbook(fis);
         // 첫번재 시트
@@ -51,20 +52,25 @@ public class ExcelUtils {
         for (int i = firstRowNum + 1; i <= lastRowNum; i += 1) {
             Row row = sheet.getRow(i);
 
-            Map<String, String> data = new HashMap<>();
+            Map<String, Object> data = new HashMap<>();
             for (int j = 0; j < columnSize; j += 1) {
                 if (sheet.isColumnHidden(j)) {
                     continue;
                 }
                 Cell cell = row.getCell(j);
 
+                Object cellVal = null;
+
                 if (cell == null || cell.getCellType() == CellType.BLANK) {
                     // empty
-                    data.put(colNames.get(j), null);
+                } else if (cell.getCellType() == CellType.NUMERIC) {
+                    cellVal = cell.getNumericCellValue();
                 } else {
-                    data.put(colNames.get(j), cell.getStringCellValue());
+                    String strVal = cell.getStringCellValue();
+                    cellVal = StringUtils.isEmpty(strVal) ? null : strVal;
                 }
 
+                data.put(colNames.get(j), cellVal);
             }
 
             list.add(data);
@@ -76,4 +82,5 @@ public class ExcelUtils {
         return result;
 
     }   // END
+
 }

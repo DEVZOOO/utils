@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>엑셀업로드 - Utils</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        #loading {
+            display: none;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+        }
+        #loading .background {
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .3);
+        }
+        #loading .spinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #loading.active {
+            display: unset;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Excel to List</h2>
+    <form id="form" class="mt-4">
+        <table class="table table-striped">
+            <colgroup>
+                <col style="width: 120px">
+            </colgroup>
+            <tbody>
+            <tr>
+                <th th:text="파일"></th>
+                <td>
+                    <div class="input-group">
+                        <input type="file" name="file" class="form-control">
+                        <button class="btn btn-outline-secondary" type="button" onclick="convertExcel()">업로드</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>변환결과</th>
+                <td>
+                    <div>
+                        <div>
+                            테이블명 : <span class="res_tbl"></span>
+                        </div>
+                        <div>
+                            데이터
+                            <br>
+                            <texarea style="resize: none" class="res_data form-control"></texarea>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+
+</div>
+
+<div id="loading">
+    <div class="background"></div>
+    <div class="d-flex justify-content-center spinner">
+        <div class="spinner-border" role="status">
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function convertExcel() {
+        displayLoadingSpinner(true);
+
+        $.ajax({
+            url : "/utils/excel",
+            type : "post",
+            data : new FormData($("#form")[0]),
+            contentType : false,
+            processData: false,
+            enctype : "multipart/form-data",
+            success : function(result) {
+                console.log(result);
+                alert(result.resMsg);
+                if (result.resCode == "0") {
+                    const list = result.data.list;
+                    const table = result.data.table;
+
+                    $("#form .res_tbl").text(table);
+                    $("#form .res_data").text(`${list.length} 개`);
+                    // $("#form .res_data").text(JSON.stringify(list));
+                }
+            },
+            error : function(result) {
+                console.log(result);
+            },
+            complete : function() {
+                displayLoadingSpinner(false);
+            },
+        });
+    }
+
+    /**
+     * 로딩바 표시 여부
+     */
+    function displayLoadingSpinner(isShow) {
+        isShow ? $("#loading").addClass("active") : $("#loading").removeClass("active");
+    }
+</script>
+
+</body>
+</html>

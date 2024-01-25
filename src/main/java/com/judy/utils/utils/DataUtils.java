@@ -1,16 +1,17 @@
-package com.judy.common;
+package com.judy.utils.utils;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * 데이터 관련
  */
 public class DataUtils {
+
 
     /**
      * VO getter 호출
@@ -107,6 +108,5 @@ public class DataUtils {
 
         return result;
     }
-
 
 }
