@@ -7,9 +7,9 @@ spring:
 
   datasource:
     hikari:
-      jdbc-url: jdbc:log4jdbc:mariadb://home.devzooo.com:32773/rain_alert?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
-      username: utils-user
-      password: devzooo!!
+      jdbc-url: jdbc:log4jdbc:mariadb://${DB_HOST}:${DB_PORT}/${DB_SCHEMA}?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+      username: ${DB_USER}
+      password: ${DB_PASSWORD}
       driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
 
   jpa:
@@ -26,6 +26,14 @@ spring:
 
   thymeleaf:
     cache: false
+
+springdoc:
+  swagger-ui:
+    disable-swagger-default-url: true
+    path: /swagger-ui.html
+    displayRequestDuration: true
+    tagsSorter: alpha
+    url: /v3/api-docs
 
 ---
 spring:
