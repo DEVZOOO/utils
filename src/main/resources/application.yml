@@ -27,6 +27,14 @@ spring:
   thymeleaf:
     cache: false
 
+springdoc:
+  swagger-ui:
+    disable-swagger-default-url: true
+    path: /swagger-ui.html
+    displayRequestDuration: true
+    tagsSorter: alpha
+    url: /v3/api-docs
+
 ---
 spring:
   config:
