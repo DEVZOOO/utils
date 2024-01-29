@@ -32,7 +32,7 @@ public class TownInfoController {
     
 
     @Operation(summary = "지역 리스트 조회")
-    @GetMapping("list")
+    @GetMapping(value = "list", headers = {"Accept=application/json;charset=UTF-8"})
     public ResponseEntity<CommonRes<List<TownInfo>>> list(
         @Parameter(description = "지역 레벨") @RequestParam int level,
         @Parameter(description = "부모 지역 코드, level = 1 인 경우 null") @RequestParam(required = false) String parentCode
@@ -42,7 +42,7 @@ public class TownInfoController {
     }
 
     @Operation(summary = "지역 상세정보 조회")
-    @GetMapping("{code}")
+    @GetMapping(value = "{code}", headers = {"Accept=application/json;charset=UTF-8"})
     public ResponseEntity<CommonRes<TownInfo>> detail(@PathVariable String code) {
         TownInfo info = townInfoService.getTownInfoDetail(code);
         return ResponseEntity.ok(new CommonRes<>(info));
