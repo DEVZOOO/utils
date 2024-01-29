@@ -41,6 +41,13 @@ public class TownInfoController {
         return ResponseEntity.ok(new CommonRes<>(list));
     }
 
+    @Operation(summary = "특정 다중 지역 상세정보 조회")
+    @GetMapping(value = "detail", headers = {"Accept=application/json;charset=UTF-8"})
+    public ResponseEntity<CommonRes<List<TownInfo>>> detailList(@RequestParam List<String> codeList) {
+        List<TownInfo> list = townInfoService.getTownInfoDetailList(codeList);
+        return ResponseEntity.ok(new CommonRes<>(list));
+    }
+
     @Operation(summary = "지역 상세정보 조회")
     @GetMapping(value = "{code}", headers = {"Accept=application/json;charset=UTF-8"})
     public ResponseEntity<CommonRes<TownInfo>> detail(@PathVariable String code) {

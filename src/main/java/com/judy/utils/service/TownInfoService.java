@@ -24,8 +24,6 @@ public class TownInfoService {
 
     /**
      * 지역 조회
-     * @param level
-     * @param parentCode
      */
     public List<TownInfo> getTownInfoList(int level, String parentCode) {
         // level 범위 넘어간 경우
@@ -40,6 +38,13 @@ public class TownInfoService {
         }
 
         return townInfoRepository.getTownInfoList(level, parentCode);
+    }
+
+    /**
+     * 특정 다중 지역 상세정보 조회
+     */
+    public List<TownInfo> getTownInfoDetailList(List<String> codeList) {
+        return townInfoRepository.findAllByCodeInOrderByLevel1AscLevel2AscLevel3Asc(codeList);
     }
 
     /**

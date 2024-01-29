@@ -27,6 +27,11 @@ public interface TownInfoRepository extends JpaRepository<TownInfo, String> {
     List<TownInfo> getTownInfoList(@Param("level") int level, @Param("parentCode") String parentCode);
 
     /**
+     * 특정 다중 지역 상세정보 조회
+     */
+    List<TownInfo> findAllByCodeInOrderByLevel1AscLevel2AscLevel3Asc(List<String> codeList);
+
+    /**
      * 지역 상세정보 조회
      */
     TownInfo findTownInfoByCode(String code);
