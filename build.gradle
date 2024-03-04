@@ -48,11 +48,12 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 
     // dotenv
-    implementation "me.paulschwarz:spring-dotenv:4.0.0"
+    implementation 'me.paulschwarz:spring-dotenv:4.0.0'
 
     // DB
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'mysql:mysql-connector-java:5.1.38'
+//    implementation 'mysql:mysql-connector-java:5.1.38'
+    implementation 'org.mariadb.jdbc:mariadb-java-client'
 
     // DB 응답 로그
     implementation "org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16"
