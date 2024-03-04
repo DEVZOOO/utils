@@ -21,9 +21,15 @@ public interface TownInfoRepository extends JpaRepository<TownInfo, String> {
             " *" +
             " FROM town_info t" +
             " WHERE t.level = :level" +
-            " AND IF(:parentCode IS NULL, 1=1, code LIKE CONCAT(:parentCode, '%'))"
+            " AND IF(:parentCode IS NULL, 1=1, code LIKE CONCAT(:parentCode, '%'))" +
+            " ORDER BY t.level1 ASC, t.level2 ASC, t.level3 ASC"
     )
     List<TownInfo> getTownInfoList(@Param("level") int level, @Param("parentCode") String parentCode);
+
+    /**
+     * 특정 다중 지역 상세정보 조회
+     */
+    List<TownInfo> findAllByCodeInOrderByLevel1AscLevel2AscLevel3Asc(List<String> codeList);
 
     /**
      * 지역 상세정보 조회
