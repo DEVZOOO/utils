@@ -15,10 +15,14 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
-    database: mysql
-    generate-ddl: false
-    show-sql: false
-    dialect: org.hibernate.dialect.MySQL5Dialect
+    properties:
+      hibernate:
+        show_sql: false
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  #    database: mysql
+#    generate-ddl: false
+#    show-sql: false
+#    dialect: org.hibernate.dialect.MySQL8Dialect
 
   devtools:
     livereload:
