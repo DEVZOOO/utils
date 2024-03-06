@@ -7,16 +7,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+//@Service
 public class MemberInfoService {
     MemberInfoRepository memberInfoRepository;
 
-    @Autowired
+//    @Autowired
     public MemberInfoService(MemberInfoRepository memberInfoRepository) {
         this.memberInfoRepository = memberInfoRepository;
     }
 
     public List<MemberInfo> findAll() {
-        return memberInfoRepository.findAll();
+//        return memberInfoRepository.findAll();
+        return null;
     }
 }
