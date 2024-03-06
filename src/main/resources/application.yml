@@ -53,9 +53,9 @@ logging:
     jdbc:
       sqlonly: debug
       sqltiming: off
-      audit: off
+      audit: debug
       resultset: off
-      connection: off
+      connection: debug
       resultsettable: info
 
 ---
@@ -69,7 +69,7 @@ logging:
     jdbc:
       sqlonly: off
       sqltiming: off
-      audit: off
+      audit: debug
       resultset: off
-      connection: off
+      connection: debug
       resultsettable: off
