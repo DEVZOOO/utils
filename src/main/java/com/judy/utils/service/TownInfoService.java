@@ -5,18 +5,17 @@ import com.judy.utils.database.repository.TownInfoRepository;
 import com.judy.utils.exception.UtilsException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-//@Service
+@Service
 @Slf4j
 public class TownInfoService {
     TownInfoRepository townInfoRepository;
     
-//    @Autowired
+    @Autowired
     public TownInfoService(TownInfoRepository townInfoRepository) {
         this.townInfoRepository = townInfoRepository;
     }
