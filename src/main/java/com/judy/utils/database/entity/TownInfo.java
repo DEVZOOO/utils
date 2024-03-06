@@ -9,12 +9,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Entity
+@Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-//@Table(name = "town_info")
+@Table(name = "town_info")
 public class TownInfo {
 
     @Id

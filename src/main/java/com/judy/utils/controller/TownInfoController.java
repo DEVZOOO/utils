@@ -25,19 +25,18 @@ import java.util.List;
 @Tag(name = "지역 정보 관련 REST API")
 public class TownInfoController {
 
-//    TownInfoService townInfoService;
-    MemberInfoService memberInfoService;
+    TownInfoService townInfoService;
+//    MemberInfoService memberInfoService;
 
     @Autowired
     public TownInfoController(
-//        TownInfoService townInfoService,
-        MemberInfoService memberInfoService
+        TownInfoService townInfoService
+//        MemberInfoService memberInfoService
     ) {
-//        this.townInfoService = townInfoService;
-        this.memberInfoService = memberInfoService;
+        this.townInfoService = townInfoService;
+//        this.memberInfoService = memberInfoService;
     }
     
-/*
     @Operation(summary = "지역 리스트 조회")
     @GetMapping(value = "list", headers = {"Accept=application/json;charset=UTF-8"})
     public ResponseEntity<CommonRes<List<TownInfo>>> list(
@@ -61,15 +60,16 @@ public class TownInfoController {
         TownInfo info = townInfoService.getTownInfoDetail(code);
         return ResponseEntity.ok(new CommonRes<>(info));
     }
- */
 
 
+    /*
     @Operation(summary = "TEST(MemberInfo)")
     @GetMapping(value = "members", headers = {"Accept=application/json;charset=UTF-8"})
     public ResponseEntity<CommonRes<List<MemberInfo>>> members() {
         List<MemberInfo> list = memberInfoService.findAll();
         return ResponseEntity.ok(new CommonRes<>(list));
     }
+     */
 
 
 }

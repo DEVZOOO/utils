@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface TownInfoRepository
-//    extends JpaRepository<TownInfo, String>
+    extends JpaRepository<TownInfo, String>
 {
     List<TownInfo> findAllByLevel(int level);
 
