@@ -20,7 +20,8 @@ spring:
     properties:
       hibernate:
         show_sql: false
-        dialect: org.hibernate.dialect.MySQL8Dialect
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MySQLDialect
   #    database: mysql
 #    generate-ddl: false
 #    show-sql: false
