@@ -1,7 +1,9 @@
 package com.judy.utils.controller;
 
+import com.judy.utils.database.entity.MemberInfo;
 import com.judy.utils.database.entity.TownInfo;
 import com.judy.utils.dto.CommonRes;
+import com.judy.utils.service.MemberInfoService;
 import com.judy.utils.service.TownInfoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -23,14 +25,19 @@ import java.util.List;
 @Tag(name = "지역 정보 관련 REST API")
 public class TownInfoController {
 
-    TownInfoService townInfoService;
+//    TownInfoService townInfoService;
+    MemberInfoService memberInfoService;
 
     @Autowired
-    public TownInfoController(TownInfoService townInfoService) {
-        this.townInfoService = townInfoService;
+    public TownInfoController(
+//        TownInfoService townInfoService,
+        MemberInfoService memberInfoService
+    ) {
+//        this.townInfoService = townInfoService;
+        this.memberInfoService = memberInfoService;
     }
     
-
+/*
     @Operation(summary = "지역 리스트 조회")
     @GetMapping(value = "list", headers = {"Accept=application/json;charset=UTF-8"})
     public ResponseEntity<CommonRes<List<TownInfo>>> list(
@@ -53,6 +60,15 @@ public class TownInfoController {
     public ResponseEntity<CommonRes<TownInfo>> detail(@PathVariable String code) {
         TownInfo info = townInfoService.getTownInfoDetail(code);
         return ResponseEntity.ok(new CommonRes<>(info));
+    }
+ */
+
+
+    @Operation(summary = "TEST(MemberInfo)")
+    @GetMapping(value = "members", headers = {"Accept=application/json;charset=UTF-8"})
+    public ResponseEntity<CommonRes<List<MemberInfo>>> members() {
+        List<MemberInfo> list = memberInfoService.findAll();
+        return ResponseEntity.ok(new CommonRes<>(list));
     }
 
 
